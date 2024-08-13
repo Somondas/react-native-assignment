@@ -11,12 +11,16 @@ import {
 import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Heading from "../components/Heading";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartActions.js";
+import Cart from "../components/Cart.js";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const dispatch = useDispatch();
 
   // >> Fetch Product Details__________________________
   useEffect(() => {
@@ -51,6 +55,11 @@ const Home = () => {
     setSelectedProduct(null);
   };
 
+  // >> Add To Cart_______________________________________
+  const handleAddToCart = () => {
+    dispatch(addToCart(selectedProduct));
+    closeModal();
+  };
   // >> Pre-Loader___________________________________________
   if (loading) {
     return (
@@ -117,7 +126,10 @@ const Home = () => {
                 <Text style={styles.modalDescription}>
                   {selectedProduct.description.slice(0, 100)}...
                 </Text>
-                <TouchableOpacity style={styles.addToCartButton}>
+                <TouchableOpacity
+                  onPress={handleAddToCart}
+                  style={styles.addToCartButton}
+                >
                   <Text style={styles.addToCartButtonText}>Add To Cart</Text>
                 </TouchableOpacity>
               </View>
