@@ -1,4 +1,3 @@
-// Banner.js
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";

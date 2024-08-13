@@ -1,10 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
   Image,
   Modal,
-  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,8 +15,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartActions.js";
 import Heading from "../components/Heading";
-import { useNavigation } from "@react-navigation/native";
-import Cart from "../components/Cart.js";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -30,9 +28,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "https://api.escuelajs.co/api/v1/products"
-        );
+        const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
         // console.log(data);
         const limitedData = data.slice(0, 20);
@@ -97,10 +93,7 @@ const Home = () => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View style={styles.productContainer}>
-              <Image
-                source={{ uri: item.images[0] }}
-                style={styles.productImage}
-              />
+              <Image source={{ uri: item.image }} style={styles.productImage} />
               <View style={styles.productDetails}>
                 <Text style={styles.productTitle}>{item.title}</Text>
                 <Text style={styles.productPrice}>
@@ -131,7 +124,7 @@ const Home = () => {
                   </Text>
                 </TouchableOpacity>
                 <Image
-                  source={{ uri: selectedProduct.images[0] }}
+                  source={{ uri: selectedProduct.image }}
                   style={{
                     width: "100%",
                     height: 200,
@@ -196,9 +189,9 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   productTitle: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
-    width: "55%",
+    width: "40%",
   },
   productPrice: {
     fontSize: 14,

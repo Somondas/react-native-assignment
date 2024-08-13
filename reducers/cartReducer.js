@@ -1,4 +1,3 @@
-// reducers/cartReducer.js
 import {
   ADD_TO_CART,
   INCREMENT_QUANTITY,

@@ -1,4 +1,3 @@
-// Cart.js
 import React from "react";
 import {
   View,
@@ -76,7 +75,7 @@ const Cart = () => {
         renderItem={({ item }) => (
           <View style={styles.cartItem}>
             <Image
-              source={{ uri: item.images[0] }}
+              source={{ uri: item.image }}
               style={{
                 width: "100%",
                 height: 200,
