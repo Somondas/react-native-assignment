@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   FlatList,
   Image,
   Modal,
+  Pressable,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,9 +12,10 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Heading from "../components/Heading";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../actions/cartActions.js";
+import Heading from "../components/Heading";
+import { useNavigation } from "@react-navigation/native";
 import Cart from "../components/Cart.js";
 
 const Home = () => {
@@ -21,6 +24,7 @@ const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   // >> Fetch Product Details__________________________
   useEffect(() => {
@@ -72,6 +76,21 @@ const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Heading />
+      <SafeAreaView
+        style={{
+          marginTop: 10,
+          width: "40%",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Button
+          title="My Cart"
+          onPress={() => {
+            navigation.navigate("AddToCart");
+          }}
+        ></Button>
+      </SafeAreaView>
       <View style={{ flex: 1, paddingTop: 50, paddingHorizontal: 10 }}>
         <FlatList
           data={products}

@@ -1,6 +1,9 @@
 // Banner.js
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Heading = () => {
   return (
