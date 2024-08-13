@@ -15,6 +15,7 @@ import {
   decrementQuantity,
 } from "../actions/cartActions.js";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
@@ -39,7 +40,15 @@ const Cart = () => {
         }}
       >
         <View>
-          <Text>Your cart is empty.</Text>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              marginBottom: 10,
+            }}
+          >
+            Your cart is empty.
+          </Text>
           <Button
             title="Go to Home"
             onPress={() => {
@@ -52,6 +61,15 @@ const Cart = () => {
   }
   return (
     <View style={styles.container}>
+      <View
+        style={{
+          padding: 10,
+        }}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back" size={24} color="#2196F3" />
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={cart}
         keyExtractor={(item) => item.id.toString()}
@@ -66,7 +84,7 @@ const Cart = () => {
               }}
             />
             <Text style={styles.productTitle}>{item.title}</Text>
-            <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
+            <Text style={styles.productPrice}>Rs.{item.price.toFixed(2)}</Text>
             <View style={styles.quantityControls}>
               <TouchableOpacity
                 onPress={() => handleDecrement(item.id)}
@@ -113,6 +131,7 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 14,
     color: "#888",
+    marginBottom: 5,
   },
   quantityControls: {
     flexDirection: "row",
