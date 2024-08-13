@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import {
-  Button,
   FlatList,
   Image,
   Modal,
@@ -8,10 +8,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { Component, useEffect, useState } from "react";
-import Heading from "../components/Heading";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "react-native-elements";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Heading from "../components/Heading";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
