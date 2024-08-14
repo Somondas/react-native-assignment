@@ -72,9 +72,9 @@ const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Heading />
-      <SafeAreaView
+      <View
         style={{
-          marginTop: 10,
+          marginTop: 60,
           width: "40%",
           marginLeft: "auto",
           marginRight: "auto",
@@ -86,8 +86,8 @@ const Home = () => {
             navigation.navigate("AddToCart");
           }}
         ></Button>
-      </SafeAreaView>
-      <View style={{ flex: 1, paddingTop: 50, paddingHorizontal: 10 }}>
+      </View>
+      <View style={{ flex: 1, paddingTop: 20, paddingHorizontal: 10 }}>
         <FlatList
           data={products}
           keyExtractor={(item) => item.id.toString()}
